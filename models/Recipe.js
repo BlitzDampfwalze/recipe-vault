@@ -1,11 +1,23 @@
 const mongoose = require('mongoose');
 
+// const ingredientsSchema = new mongoose.Schema(
+//   {
+//     name: String,
+//     amount: Number,
+//     unit: String,
+//   }
+// )
+
 const recipeSchema = new mongoose.Schema(
   {
+    title: String,
+    dishTypes: String,
     ingredients: [String], 
-    instructions: {type: String},
-    settings: [String], 
-    author: {type: String},
+    instructions: String,
+    readyInMinutes: Number,
+    image: String, //appears to be returned as a String from the API
+    servings: Number,
+    source: String,
     created: {type: Date, default: Date.now}
   }
 );

@@ -10,26 +10,30 @@ beforeEach((done) => {
 
 describe('POST /recipes', () => {
   it('should create new recipe', (done) => {
+    
     const newRecipe = {
-      
+      dishTypes: "dessert",
+      ingredients: ["flour", "water", "apples"], 
+      instructions: "instructions alsdjflasdf",
+      readyInMinutes: 20,
     }
 
     request(app)
       .post('/recipes')
-      .send({text})
+      .send({newRecipe})
       .expect(200)
       .expect((res) => {
-        expect(res.body.text).toBe(text);
+        expect(res.body.newRecipe).toBe(newRecipe);
       })
       .end(err => {
         if(err) {
           return done(err);
         }
 
-      Recipe.find({text}).then(recipes => {
+      Recipe.find({newRecipe}).then(recipes => {
         expect(recipes.length).toBe(1);
-        expect(recipes[0].text).toBe(text);
-        console.log("console logging text here:", text);
+        expect(recipes[0].newRecipe).toBe(newRecipe);
+        console.log("console logging text here:", newRecipe);
         done();
       }).catch((err) => done(err));
     });
