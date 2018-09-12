@@ -15,7 +15,7 @@ const recipeSchema = new mongoose.Schema(
     ingredients: [String], 
     instructions: String,
     readyInMinutes: Number,
-    image: String, //appears to be returned as a String from the API
+    image: String,
     servings: Number,
     source: String,
     created: {type: Date, default: Date.now}

@@ -1,5 +1,6 @@
 const expect = require('expect');
 const request = require('supertest');
+const {ObjectID} = require('mongodb');
 
 const {app} = require('../server');
 const {Recipe} = require('../models/Recipe');
@@ -11,12 +12,21 @@ beforeEach((done) => {
 describe('POST /recipes', () => {
   it('should create new recipe', (done) => {
     
-    const newRecipe = {
-      dishTypes: "dessert",
-      ingredients: ["flour", "water", "apples"], 
-      instructions: "instructions alsdjflasdf",
-      readyInMinutes: 20,
-    }
+    const newRecipe = [
+      {
+        _id: new ObjectID(),
+        dishTypes: "dessert",
+        ingredients: ["flour", "water", "apples"], 
+        instructions: "instructions alsdjflasdf",
+        readyInMinutes: 20,
+      },
+      {
+        _id: new ObjectID(),
+        dishTypes: "main course",
+        ingredients: ["seasoning", "meat", "stuff"], 
+        instructions: "instructions alsdsdf",
+        readyInMinutes: 30,
+    }]
 
     request(app)
       .post('/recipes')
@@ -41,5 +51,25 @@ describe('POST /recipes', () => {
 });
 
 describe('GET /recipes', () => {
-  
-})
+  it('should get all recipes', (done) => {
+    request(app)
+      .get('/recipes')
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.recipes.length).toBe(1);
+      })
+      .end(done);
+  });
+});
+
+describe('GET /recipes/:id', () => {
+  it('should return todo doc', (done) => {
+    request(app)
+    .get(`/recipes/${recipes[0]._id.toHexString()}`)
+    .expect(200)
+    .expect((res) => {
+      expect(res.body.recipe.title).toBe(recipes[0].title);
+    })
+    .end(done);
+  });
+});

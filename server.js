@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 
 const app = express();
 
@@ -13,14 +14,12 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-app.use('*', function (req, res) {
-  res.status(404).json({ message: 'Not Found' });
-}); //should be here or in my recipeRoutes
+// app.use('*', function (req, res) {
+//   res.status(404).json({ message: 'Not Found' });
+// }); //should be here or in my recipeRoutes
 
 require('./routes/recipeRoutes')(app);
 // require('./routes/userRoutes')(app);
-
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`listening on port: ${PORT}`));

@@ -12,19 +12,19 @@ module.exports = app => {
     console.log(req.body);
 
     const recipe = new Recipe({
-      title: req.body.title,      
+      title: req.body.title,
       dishTypes: req.body.dishTypes,
       ingredients: req.body.ingredients, 
       instructions: req.body.instructions,
       readyInMinutes: req.body.readyInMinutes,
       image: req.body.image,
       servings: req.body.servings,
-      source: req.body.source,
-      settings: req.body.settings,
+      source: req.body.source
     });
 
-    recipe.save()
-    .then(recipe => { res.send(recipe) })
+    recipe.save().then(recipe => { 
+      res.send(recipe); 
+    })
     .catch(err => { res.status(400).send(err) });
   });
 
