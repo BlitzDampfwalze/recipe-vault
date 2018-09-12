@@ -39,3 +39,7 @@ describe('POST /recipes', () => {
     });
   });
 });
+
+describe('GET /recipes', () => {
+  
+})

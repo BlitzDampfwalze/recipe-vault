@@ -9,8 +9,13 @@ mongoose.Promise = global.Promise;
 
 const app = express();
 
+app.use(express.static('public')); 
 app.use(morgan('common'));
 app.use(bodyParser.json());
+
+app.use('*', function (req, res) {
+  res.status(404).json({ message: 'Not Found' });
+}); //should be here or in my recipeRoutes
 
 require('./routes/recipeRoutes')(app);
 // require('./routes/userRoutes')(app);
