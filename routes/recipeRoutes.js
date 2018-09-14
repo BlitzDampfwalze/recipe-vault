@@ -29,8 +29,9 @@ module.exports = app => {
   });
 
   app.get('/recipes', (req, res) => {
-    Recipe.find()
-    .then((recipes) => { res.send({recipes}) }) //{} syntax vs res.json(...map etc.)
+    Recipe.find().then((recipes) => { 
+      res.send({recipes}) 
+    }) //{} syntax vs res.json(...map etc.)
     .catch(err => { res.status(400).send(err) });
   });
 
@@ -40,8 +41,7 @@ module.exports = app => {
       return res.sendStatus(404);
     }
 
-    Recipe
-        .findById(req.params.id).then(recipe => {
+    Recipe.findById(req.params.id).then(recipe => {
         if(!recipe) {
           return res.sendStatus(404);
         }
