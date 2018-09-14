@@ -1,13 +1,5 @@
 const mongoose = require('mongoose');
 
-// const ingredientsSchema = new mongoose.Schema(
-//   {
-//     name: String,
-//     amount: Number,
-//     unit: String,
-//   }
-// )
-
 const recipeSchema = new mongoose.Schema(
   {
     title: String,

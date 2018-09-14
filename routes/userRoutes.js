@@ -1,4 +1,4 @@
-const pick = require('lodash.pick'); //discuss
+const pick = require('lodash.pick');
 
 const { User } = require('..models/User');
 const { authenticate } = require('../middleware/authenticate');

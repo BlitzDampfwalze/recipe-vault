@@ -117,4 +117,20 @@ describe('GET /recipes/:id', () => {
     })
     .end(done);
   });
+
+  it('should return 404 if recipe not found', (done) => {
+    const hexId = new ObjectID().toHexString();
+
+    request(app)
+      .get(`/recipes/${hexId}`)
+      .expect(404)
+      .end(done);
+  });
+
+  it('should return 404 for non-object ids', (done) => {
+    request(app)
+      .get('/recipes/123abc')
+      .expect(404)
+      .end(done);
+  });
 });
