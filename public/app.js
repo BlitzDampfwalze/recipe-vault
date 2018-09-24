@@ -19,11 +19,18 @@ $(() => {
     $.ajax(settings);
   };
 
-  const recipeApiResults = (data) => {
-    console.log(data);
-    console.log(data.results[0].title)
+  // const recipeApiDisplaySearch = (data) => {
+  //   console.log(data);
+  //   console.log(data.results[0].title)
+  //   results = data.recipes.map((recipes, index) => renderApiResult(recipes));
+  //   $('#search-results').html(results);
+  // };
 
-  };
+  // renderApiResult(recipes) {
+  //   return `
+  //     <div>${recipes.title}</div>
+  //   `
+  // };
 
   const handleSubmit = () => {
     $('#search-form').submit(event => {
