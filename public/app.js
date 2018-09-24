@@ -21,6 +21,8 @@ $(() => {
 
   const recipeApiResults = (data) => {
     console.log(data);
+    console.log(data.results[0].title)
+
   };
 
   const handleSubmit = () => {
@@ -33,7 +35,26 @@ $(() => {
     });
   };
 
-  const getDisplayVaultRecipes = () => {}
+  let recipeTemplate = `
+  <div class="recipes">
+  <h2 class="recipe-title"></h2>
+  <h5 class="recipe-date">Date: </h5>
+  <p class="recipe-content"></p>
+  </div>`;
+
+  const getDisplayVaultRecipes = () => {
+    $.getJSON('/recipes', recipes => {
+      let recipe = recipes.map(post => {
+        let element = $(recipeTemplate);
+        element.attr('id', post.id);
+        element.find('.recipe-title').text(post.title);
+        element.find('.recipe-date').text(`Published on: ${post.publishDate}`);
+        element.find('.recipe-content').text(post.content);
+        return element;
+      });
+      $('#recipes').html(recipe);
+    });
+  };
 
 handleSubmit();
 });
