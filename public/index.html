@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head> 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+
     <title>Recipe Vault</title>
     
   </head>
@@ -13,15 +17,20 @@
       </div>
       <div><a href="enter-recipe.html">add recipe</a></div>      
     </div>
-    <h1>Recipe Vault</h1>
+    <h1><a href="recipe-vault.html">Recipe Vault</a></h1>
     <h2>Never lose your grandma's secret recipes again</h2>
     <div>
       <div>read more...</div>
       <div class="hidden">more info to go here</div>
     </div>
-    <input type="text" id="search-input">
+    <form id="search-form">
+      <label for="search"></label>
+      <input type="text" id="search-input">
+      <button type="submit">Search</button>
+    </form>
     <div id="search-results"></div>
     
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
   </body>
 </html>

@@ -82,17 +82,17 @@ describe('POST /recipes', () => {
   // });
 })
 
-describe('GET /recipes', () => {
-  it('should get all recipes', (done) => {
-    request(app)
-      .get('/recipes')
-      .expect(200)
-      .expect((res) => {
-        expect(res.body.recipes.length).toBe(2);
-      })
-      .end(done);
-  });
-});
+// describe('GET /recipes', () => {
+//   it('should get all recipes', (done) => {
+//     request(app)
+//       .get('/recipes')
+//       .expect(200)
+//       .expect((res) => {
+//         expect(res.body.recipes.length).toBe(2);
+//       })
+//       .end(done);
+//   });
+// });
 
 
 describe('GET /recipes', () => {

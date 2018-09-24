@@ -56,12 +56,14 @@ module.exports = app => {
   app.delete('/recipes/:id', (req, res) => {
 
     if (!ObjectID.isValid(req.params.id)) {
-      return res.status(400).send('Invalid ID');
+      return res.status(404).send('Invalid ID');
     }
 
-    Recipe
-      .findByIdAndRemove(req.params.id)
-      .then(() => {
+    Recipe.findByIdAndRemove(req.params.id)
+    // .then((recipe) => { 
+    //   if (!recipe) { return res.status(404).send();}
+    //   res.send(recipe);}).catch((err) => {res.status(400).send();});
+    .then(() => {
         res.sendStatus(204);
       })
       .catch(err => {
