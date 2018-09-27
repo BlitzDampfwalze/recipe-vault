@@ -13,7 +13,7 @@ module.exports = app => {
 
     const recipe = new Recipe({
       title: req.body.title,
-      dishTypes: req.body.dishTypes,
+      dishType: req.body.dishType,
       ingredients: req.body.ingredients, 
       instructions: req.body.instructions,
       readyInMinutes: req.body.readyInMinutes,

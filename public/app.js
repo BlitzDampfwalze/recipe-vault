@@ -19,18 +19,59 @@ $(() => {
     $.ajax(settings);
   };
 
-  // const recipeApiDisplaySearch = (data) => {
-  //   console.log(data);
-  //   console.log(data.results[0].title)
-  //   results = data.recipes.map((recipes, index) => renderApiResult(recipes));
-  //   $('#search-results').html(results);
-  // };
+  const getRecipeDetails = (id, callback) => {
+    const settings = {
+      url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/information`,
+      headers: {
+        'X-Mashape-Key': 'kvcVm8vCUSmsh2ZJ9svxOfQZOMMKp1BcOQPjsng9KQrpPmqogE',
+        'X-Mashape-Host': 'spoonacular-recipe-food-nutrition-v1.p.mashape.com'
+      },
+      dataType: 'json',
+      type: 'GET',
+      success: callback
+    };
+    $.ajax(settings);
+  }
 
-  // renderApiResult(recipes) {
-  //   return `
-  //     <div>${recipes.title}</div>
-  //   `
-  // };
+  const recipeApiDisplaySearch = (data) => {
+    console.log(data);
+    console.log(data.results[0].title)
+    //returns search results with first API call
+    const results = data.results.map((recipe, index) => renderApiResult(recipe, data.baseUri));
+    $('#search-results').html(results);
+  };
+
+  const renderApiResult = (recipe, baseUri) => {
+    //called above, returns/places basic recipe information/results in the above .html(results)
+    const result = $(`<div class="${recipe.id}">
+                        ${recipe.title}
+                        <img src="${baseUri}${recipe.image}">
+                        <button id="${recipe.id} onclick="getRecipeDetails(recipe.id, savePostRecipe(recipe))">Save</button>
+                      </div>`); //on click function, pass it different callback, same as post?
+    //clicking a result calls and logs recipe details in the console
+    result.click( () => {
+      getRecipeDetails(recipe.id, (recipe) => {console.log(recipe);});
+    })
+    $(`#${recipe.id}`).on('click', savePostRecipe(recipe, getRecipeDetails(recipe.id, ))) //target the save button to trigger save function
+  
+    return result;
+  };
+
+  const savePostRecipe = (recipe) => {
+    console.log(recipe);
+    // recipeData = {
+    //   title: recipe.,
+    //   dishType: String,
+    //   ingredients: [String], 
+    //   instructions: String,
+    //   readyInMinutes: Number,
+    //   image: String,
+    //   servings: Number,
+    //   source: String,
+    // };
+    savePostRecipe()
+
+  };
 
   const handleSubmit = () => {
     $('#search-form').submit(event => {
@@ -38,30 +79,10 @@ $(() => {
     const queryTarget = $(event.currentTarget).find('#search-input');
     const query = queryTarget.val(); 
     queryTarget.val(''); // clear out the input
-    getApiRecipes(query, recipeApiResults);
+    getApiRecipes(query, recipeApiDisplaySearch);
     });
   };
 
-  let recipeTemplate = `
-  <div class="recipes">
-  <h2 class="recipe-title"></h2>
-  <h5 class="recipe-date">Date: </h5>
-  <p class="recipe-content"></p>
-  </div>`;
-
-  const getDisplayVaultRecipes = () => {
-    $.getJSON('/recipes', recipes => {
-      let recipe = recipes.map(post => {
-        let element = $(recipeTemplate);
-        element.attr('id', post.id);
-        element.find('.recipe-title').text(post.title);
-        element.find('.recipe-date').text(`Published on: ${post.publishDate}`);
-        element.find('.recipe-content').text(post.content);
-        return element;
-      });
-      $('#recipes').html(recipe);
-    });
-  };
 
 handleSubmit();
 });

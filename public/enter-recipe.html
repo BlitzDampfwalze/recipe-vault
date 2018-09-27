@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <title>Recipe Vault</title>
+  </head>
+  <body>
+    <div><a href="index.html">Search for Recipes</a></div> 
+    <div><a href="recipe-vault.html">Recipe Vault</a></div>
+    <form action="enter-recipe" id="recipe-entry">
+        <label for="title-input">Title</label>
+        <input type="text" id="title-input" class="inputs">
+
+        <label for="dish-type-input">Dish Type</label>
+        <select id="dish-type-input" class="inputs">
+            <option value="main course">Main course</option>
+            <option value="side dish">Side dish</option>
+            <option value="dessert">Dessert</option>
+            <option value="appetizer">Appetizer</option>
+            <option value="salad">Salad</option>
+            <option value="bread">Bread</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="soup">Soup</option>
+            <option value="beverage">Beverage</option>
+            <option value="sauce">Sauce</option>
+            <option value="drink">Drink</option>
+        </select>
+
+        <label for="addBox"><a href="#" id="addBox">Add Another Input Box</a></label>
+        <div id="ingredients-wrapper">
+            <p>
+                <label for="ingredient-input"><input type="text" id="ingredient-input" class="inputs" size="20" name="ingredient" value="" placeholder="ingredient" /></label>
+            </p>
+        </div>
+
+        <label for="instructions-input">Instructions: </label>
+        <textarea id="instructions-input" class="inputs" rows="4" cols="50" placeholder="Enter instructions here!"></textarea>
+
+        <label for="readyIn-input">Ready in: </label>
+        <input type="number" id="readyIn-input" class="inputs" name="readyIn" step="1" placeholder="number in minutes" />
+
+        <label for="servings-input">Servings: </label>
+        <input type="number" id="servings-input" class="inputs" name="servings" placeholder="number of servings" />
+
+        <label for="source-input">Source:</label>
+        <input type="text" id="source-input" class="inputs" name="source" placeholder="website link or author's name" />
+
+        <button type="submit" onclick="postRecipe()">Enter</button>
+    </form>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="app-entry.js"></script>
+  </body>
+</html>
