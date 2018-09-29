@@ -19,7 +19,7 @@ $(() => {
     $.ajax(settings);
   };
 
-  const getRecipeDetails = (id, callback) => {
+  const getRecipeDetails = (id, baseUri) => {
     const settings = {
       url: `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/information`,
       headers: {
@@ -28,10 +28,36 @@ $(() => {
       },
       dataType: 'json',
       type: 'GET',
-      success: callback
-    };
+      success: (recipe) => {
+        const ingredients = []
+        recipe.extendedIngredients.map((item, index) => {
+          ingredients.push(item.original);
+        })
+        const data = { 
+          "title": recipe.title,
+          "dishType": recipe.dishTypes[0],
+          "ingredients": ingredients, 
+          "instructions": recipe.instructions,
+          "readyInMinutes": recipe.readyInMinutes,
+          "image": `${baseUri}${recipe.image}`,
+          "servings": recipe.servings,
+          "source": recipe.sourceUrl,
+        }
+        console.log(ingredients)
+        console.log(recipe)
+        const settings = {
+          type: 'POST',
+          url: '/recipes',
+          data: JSON.stringify(data),
+          contentType: 'application/json',
+          dataType: 'json'
+        }
+        console.log(recipe.title, recipe.dishTypes[0], recipe.instructions, recipe.readyInMinutes, recipe.image, recipe.servings, recipe.sourceUrl)
+        $.ajax(settings);            
+          }, //end of success function
+    }; //settings
     $.ajax(settings);
-  }
+  };
 
   const recipeApiDisplaySearch = (data) => {
     console.log(data);
@@ -46,16 +72,24 @@ $(() => {
     const result = $(`<div class="${recipe.id}">
                         ${recipe.title}
                         <img src="${baseUri}${recipe.image}">
-                        <button id="${recipe.id} onclick="getRecipeDetails(recipe.id, savePostRecipe(recipe))">Save</button>
-                      </div>`); //on click function, pass it different callback, same as post?
+                        <button id="${recipe.id}" onclick="getRecipeDetails(recipe.id, savePostRecipe(recipe))">Save</button>                        
+                      </div>                      
+                      `); //on click function, pass it different callback, same as post?
     //clicking a result calls and logs recipe details in the console
     result.click( () => {
-      getRecipeDetails(recipe.id, (recipe) => {console.log(recipe);});
-    })
-    $(`#${recipe.id}`).on('click', savePostRecipe(recipe, getRecipeDetails(recipe.id, ))) //target the save button to trigger save function
+      getRecipeDetails(recipe.id, baseUri);
+      
+      // recipe => console.log(recipe)
+    }) 
+    // $(`#${recipe.id}`).on('click', savePostRecipe(recipe, getRecipeDetails(recipe.id, ))) //target the save button to trigger save function
   
     return result;
   };
+
+  const handleSave = (data) => {
+    console.log(data);
+
+  }
 
   const savePostRecipe = (recipe) => {
     console.log(recipe);
@@ -69,7 +103,6 @@ $(() => {
     //   servings: Number,
     //   source: String,
     // };
-    savePostRecipe()
 
   };
 

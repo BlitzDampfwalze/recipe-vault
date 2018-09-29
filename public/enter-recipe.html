@@ -12,11 +12,11 @@
     <div><a href="index.html">Search for Recipes</a></div> 
     <div><a href="recipe-vault.html">Recipe Vault</a></div>
     <form action="enter-recipe" id="recipe-entry">
-        <label for="title-input">Title</label>
-        <input type="text" id="title-input" class="inputs">
+        <label for="title" >Title</label>
+        <input type="text" id="title" class="inputs" placeholder="e.g., Apple Pie">
 
-        <label for="dish-type-input">Dish Type</label>
-        <select id="dish-type-input" class="inputs">
+        <label for="dishType">Dish Type</label>
+        <select id="dishType" class="inputs">
             <option value="main course">Main course</option>
             <option value="side dish">Side dish</option>
             <option value="dessert">Dessert</option>
@@ -33,23 +33,23 @@
         <label for="addBox"><a href="#" id="addBox">Add Another Input Box</a></label>
         <div id="ingredients-wrapper">
             <p>
-                <label for="ingredient-input"><input type="text" id="ingredient-input" class="inputs" size="20" name="ingredient" value="" placeholder="ingredient" /></label>
+                <label for="ingredients"><input type="text" id="ingredients" class="inputs" size="20" name="ingredient" value="" placeholder="ingredient" /></label>
             </p>
         </div>
 
-        <label for="instructions-input">Instructions: </label>
-        <textarea id="instructions-input" class="inputs" rows="4" cols="50" placeholder="Enter instructions here!"></textarea>
+        <label for="instructions">Instructions: </label>
+        <textarea id="instructions" class="inputs" rows="4" cols="50" placeholder="Enter instructions here!"></textarea>
 
-        <label for="readyIn-input">Ready in: </label>
-        <input type="number" id="readyIn-input" class="inputs" name="readyIn" step="1" placeholder="number in minutes" />
+        <label for="readyInMinutes">Ready in: </label>
+        <input type="number" id="readyInMinutes" class="inputs" name="readyIn" step="1" placeholder="number in minutes" />
 
-        <label for="servings-input">Servings: </label>
-        <input type="number" id="servings-input" class="inputs" name="servings" placeholder="number of servings" />
+        <label for="servings">Servings: </label>
+        <input type="number" id="servings" class="inputs" name="servings" placeholder="number of servings" />
 
-        <label for="source-input">Source:</label>
-        <input type="text" id="source-input" class="inputs" name="source" placeholder="website link or author's name" />
+        <label for="source">Source:</label>
+        <input type="text" id="source" class="inputs" name="source" placeholder="website link or author's name" />
 
-        <button type="submit" onclick="postRecipe()">Enter</button>
+        <button type="submit">Enter</button>
     </form>
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

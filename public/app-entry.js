@@ -1,4 +1,3 @@
-$(() => {
 // function() {
 //   var initialDiv = $('#ingredients-wrapper');
 //   var i = $('#ingredients-wrapper p').length + 1;
@@ -43,22 +42,25 @@ $(() => {
 
 const postRecipe = () => {
 
-    $('form').on('click', event => {
-      event.preventDefault();})
+    $('#recipe-entry').submit(event => {
+      event.preventDefault();
 
     const formData = {};
 
     console.log($('form').find('.inputs'))
-    $('form').find('inputs').each(function(index, node) {
-      formData[node.id] = node.value;
-      
+    $('form').find('.inputs').each(function(index, node) {
+      formData[node.id] = node.value;      
     });
+    $('form').find('.inputs').each(function(index, node) {
+      node.value = '';
+    });
+
 
   console.log(formData)
   const settings = {
     type: 'POST',
     url: '/recipes',
-    data: formData,
+    data: JSON.stringify(formData),
     // data: { 
     //   "title": String,
     //   "dishType": String,
@@ -69,12 +71,11 @@ const postRecipe = () => {
     //   "servings": Number,
     //   "source": String,
     // },
-    success: '',
+    // success: '',
     contentType: 'application/json',
     dataType: 'json'
   }
-  // $.ajax(settings);
-};
-
-
-});
+  $.ajax(settings);
+  })
+}; 
+postRecipe();

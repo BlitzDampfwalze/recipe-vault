@@ -16,13 +16,13 @@ const getDisplayVaultRecipes = () => {
       let element = $(recipeTemplate);
       element.attr('id', post.id);
       element.find('.recipe-title').text(post.title);
-      element.find('.recipe-type').text(`Dish Type: ${post.dishType}`);
+      element.find('.recipe-type').text(`Dish type: ${post.dishType}`);
       element.find('.recipe-ingredients').html(post.ingredients.map(ingredient => `<li>${ingredient}</li>`));
       element.find('.recipe-instructions').text(post.instructions);
-      element.find('.recipe-readyInMinutes').text(`${post.readyInMinutes} minutes`);
+      element.find('.recipe-readyInMinutes').text(`Ready in ${post.readyInMinutes} minutes`);
       element.find('.recipe-image').text(post.image);
       element.find('.recipe-servings').text(`Servings: ${post.servings}`);
-      element.find('.recipe-source').text(post.source);
+      element.find('.recipe-source').text(`Source: ${post.source}`);
       element.find('.recipe-date').text(`Published on: ${new Date(post.created).toDateString()}`);
       return element;
     });
