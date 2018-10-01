@@ -72,10 +72,13 @@ $(() => {
     const result = $(`<div class="${recipe.id}">
                         ${recipe.title}
                         <img src="${baseUri}${recipe.image}">
-                        <button id="${recipe.id}" onclick="getRecipeDetails(recipe.id, savePostRecipe(recipe))">Save</button>                        
+                        <button id="${recipe.id}">Save</button>                        
                       </div>                      
-                      `); //on click function, pass it different callback, same as post?
+                      `); 
+                      // onclick="getRecipeDetails(recipe.id, savePostRecipe(recipe))"
+                      //on click function, pass it different callback, same as post?
     //clicking a result calls and logs recipe details in the console
+    handleSave(recipe.id);
     result.click( () => {
       getRecipeDetails(recipe.id, baseUri);
       
@@ -86,9 +89,10 @@ $(() => {
     return result;
   };
 
-  const handleSave = (data) => {
-    console.log(data);
-
+  const handleSave = (id) => {
+    $('#search-results').on('click', '#id', function(event){
+      console.log(id);
+    });
   }
 
   const savePostRecipe = (recipe) => {
