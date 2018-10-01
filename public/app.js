@@ -52,7 +52,7 @@ $(() => {
           contentType: 'application/json',
           dataType: 'json'
         }
-        console.log(recipe.title, recipe.dishTypes[0], recipe.instructions, recipe.readyInMinutes, recipe.image, recipe.servings, recipe.sourceUrl)
+        // console.log(recipe.title, recipe.dishTypes[0], recipe.instructions, recipe.readyInMinutes, recipe.image, recipe.servings, recipe.sourceUrl)
         $.ajax(settings);            
           }, //end of success function
     }; //settings
