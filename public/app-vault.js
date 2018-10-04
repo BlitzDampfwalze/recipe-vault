@@ -9,10 +9,38 @@ let recipeTemplate = `
 <div class="recipe-servings"></div>
 <div class="recipe-source"></div>
 <div class="recipe-date">Date: </div>
+<button><a href="enter-recipe.html?edit">Edit</a></button>
+<button id="delete-recipe">Delete</button>
 </div>`;
+
 const getDisplayVaultRecipes = () => {
-  $.getJSON('/recipes', res => {
-    let recipe = res.recipes.map(post => {
+  // const editRecipeButton = $('#edit-recipe');
+  const deleteRecipeButton = $('#delete-recipe');
+
+  // const editRecipe = () => {
+  //   <div><a href="enter-recipe.html">add recipe</a></div>
+  // };
+  const deleteRecipe = () => {
+
+  };
+  
+  // editRecipeButton.click(editRecipe);
+  deleteRecipeButton.click(deleteRecipe);
+
+  const authToken = localStorage.getItem(TOKEN);
+  fetch('/recipes', {
+    headers: {
+      "x-auth": authToken,
+    }
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json()
+    }
+    return Promise.reject();
+  })
+  .then(body => {
+    let recipe = body.recipes.map(post => {
       let element = $(recipeTemplate);
       element.attr('id', post.id);
       element.find('.recipe-title').text(post.title);
@@ -27,7 +55,8 @@ const getDisplayVaultRecipes = () => {
       return element;
     });
     $('#vault-recipes-wrapper').html(recipe);
-  });
+  })
+
 };
 
 getDisplayVaultRecipes();

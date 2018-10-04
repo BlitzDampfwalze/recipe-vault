@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/user.css">
+
+    <title>Recipe Vault</title>
+    
+  </head>
+  <body>
+    <header id="nav-bar">
+        <div><a href="index.html">Search for Recipes</a></div>  
+        <div><a href="recipe-vault.html">Recipe Vault</a></div>          
+    </header>
+    <form id="sign-up">
+      <div class="tabs">
+        <div class="selected tab" id="loginTab">Login</div>
+        <div class="tab" id="signupTab">Sign-up</div>
+      </div>
+        <label for="email" >Email:</label>
+        <input type="email" id="email" class="inputs" placeholder="e.g., username@gmail.com">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" class="inputs" minlength="6" placeholder="password">
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="constants.js"></script>
+    <script type="text/javascript" src="app-user.js"></script> 
+  </body>
+</html>

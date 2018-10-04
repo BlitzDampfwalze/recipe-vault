@@ -1,6 +1,6 @@
 const pick = require('lodash.pick');
 
-const { User } = require('..models/User');
+const { User } = require('../models/User');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
@@ -14,10 +14,14 @@ module.exports = app => {
         return user.generateAuthToken();
       })
       .then(token => {
-        res.header('x-auth', token).send(user);
+        // res.header('x-auth', token).send(user);
+        res.send({id:user._id, email:user.email, token})
       })
       .catch(err => {
-        res.status(400).send(err);
+        if(err.code === 11000) {
+          return res.status(401).send({message: 'username/email taken'})
+        }
+        res.sendStatus(500);
       });
   });
 
@@ -31,7 +35,8 @@ module.exports = app => {
     User.findByCredentials(body.email, body.password)
       .then(user => {
         return user.generateAuthToken().then(token => {
-          res.header('x-auth', token).send(user);
+          res.send({id:user._id, email:user.email, token})
+          // header('x-auth', token).send(user);
         });
       })
       .catch(err => {

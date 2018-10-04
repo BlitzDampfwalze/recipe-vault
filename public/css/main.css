@@ -24,6 +24,16 @@ main {
   display: flex;
 } 
 
+#sign-up {
+  display: block;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+#sign-up button {
+  width: 100%;
+}
+
 .user {
   padding: 0 5px;
 }

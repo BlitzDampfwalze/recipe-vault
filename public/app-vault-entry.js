@@ -40,6 +40,34 @@
 //   });
 // }
 
+$(() => {
+
+const submitButton = $('#add-recipe');
+const editButton = $('#edit-recipe');
+let isEdit = new URLSearchParams(window.location.search).has("edit")
+
+const showSubmit = () => {
+  submitButton.removeClass('hidden')
+  postRecipe();
+};
+
+const showEdit = () => {
+  editButton.removeClass('hidden')
+  editRecipe();
+};
+
+submitButton.click(showSubmit)
+editButton.click(showEdit)
+
+if (isEdit) {
+  showEdit();
+}
+else {
+  showSubmit();
+}
+
+})
+
 const postRecipe = () => {
 
     $('#recipe-entry').submit(event => {
@@ -47,7 +75,7 @@ const postRecipe = () => {
 
     const formData = {};
 
-    console.log($('form').find('.inputs'))
+    // console.log($('form').find('.inputs'))
     $('form').find('.inputs').each(function(index, node) {
       formData[node.id] = node.value;      
     });
@@ -78,4 +106,5 @@ const postRecipe = () => {
   $.ajax(settings);
   })
 }; 
-postRecipe();
+
+const editRecipe = () => {};

@@ -1,0 +1,11 @@
+.tabs {
+  display: flex;
+}
+
+.tabs .tab {
+  flex: 1;
+}
+
+.tab.selected {
+  font-weight: bold;
+}

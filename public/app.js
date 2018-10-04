@@ -1,5 +1,7 @@
+
 $(() => {
 
+  
   const getApiRecipes = (query, callback) => {
     const settings = {
       url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search',
@@ -43,55 +45,47 @@ $(() => {
           "servings": recipe.servings,
           "source": recipe.sourceUrl,
         }
-        console.log(ingredients)
-        console.log(recipe)
         const settings = {
           type: 'POST',
           url: '/recipes',
           data: JSON.stringify(data),
           contentType: 'application/json',
           dataType: 'json'
-        }
-        // console.log(recipe.title, recipe.dishTypes[0], recipe.instructions, recipe.readyInMinutes, recipe.image, recipe.servings, recipe.sourceUrl)
-        $.ajax(settings);            
-          }, //end of success function
-    }; //settings
+        }        
+        $.ajax(settings);                 
+          }, //end of success
+    }; 
     $.ajax(settings);
   };
 
-  const recipeApiDisplaySearch = (data) => {
+  const recipeApiDisplaySearch = (data) => {   
     console.log(data);
-    console.log(data.results[0].title)
     //returns search results with first API call
     const results = data.results.map((recipe, index) => renderApiResult(recipe, data.baseUri));
     $('#search-results').html(results);
   };
 
   const renderApiResult = (recipe, baseUri) => {
-    //called above, returns/places basic recipe information/results in the above .html(results)
+    
     const result = $(`<div class="${recipe.id}">
                         ${recipe.title}
                         <img src="${baseUri}${recipe.image}">
                         <button id="${recipe.id}">Save</button>                        
                       </div>                      
                       `); 
-                      // onclick="getRecipeDetails(recipe.id, savePostRecipe(recipe))"
-                      //on click function, pass it different callback, same as post?
-    //clicking a result calls and logs recipe details in the console
-    handleSave(recipe.id);
+    
     result.click( () => {
-      getRecipeDetails(recipe.id, baseUri);
-      
-      // recipe => console.log(recipe)
-    }) 
-    // $(`#${recipe.id}`).on('click', savePostRecipe(recipe, getRecipeDetails(recipe.id, ))) //target the save button to trigger save function
-  
+
+      handleSave(recipe);
+    })
+
     return result;
   };
 
-  const handleSave = (id) => {
-    $('#search-results').on('click', '#id', function(event){
-      console.log(id);
+  const handleSave = (recipe, baseUri) => {
+    $('#search-results').on('click', `#${recipe.id}`, function(event){
+      console.log(recipe.id);
+      getRecipeDetails(recipe.id, baseUri);
     });
   }
 

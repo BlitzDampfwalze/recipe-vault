@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/vault.css">
 
     <title>Recipe Vault</title>
   </head>
   <body>
-    <div><a href="index.html">Search for Recipes</a></div> 
-    <div><a href="recipe-vault.html">Recipe Vault</a></div>
+    <header id="nav-bar">
+      <div><a href="index.html">Search for Recipes</a></div>  
+      <div><a href="recipe-vault.html">Recipe Vault</a></div>          
+    </header>
+    
+    
     <form action="enter-recipe" id="recipe-entry">
         <label for="title" >Title</label>
         <input type="text" id="title" class="inputs" placeholder="e.g., Apple Pie">
@@ -49,10 +54,12 @@
         <label for="source">Source:</label>
         <input type="text" id="source" class="inputs" name="source" placeholder="website link or author's name" />
 
-        <button type="submit">Enter</button>
+        <button type="submit" id="add-recipe" class="hidden">Enter</button>
+        <button type="submit" id="edit-recipe" class="hidden">Save</button>
     </form>
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="app-entry.js"></script>
+    <script type="text/javascript" src="constants.js"></script>
+    <script type="text/javascript" src="app-vault-entry.js"></script>
   </body>
 </html>

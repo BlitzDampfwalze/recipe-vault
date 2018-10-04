@@ -1,17 +1,18 @@
-// const _ = {
-//   pick: require('lodash.pick'),
-//   isboolean: require('lodash.isboolean')
-// };
+const _ = {
+  pick: require('lodash.pick'),
+  isboolean: require('lodash.isboolean')
+};
 
 const { ObjectID } = require('mongodb');
 const { Recipe } = require('../models/Recipe');
-// const { authenticate } = require('../middleware/authenticate');
+const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
-  app.post('/recipes', (req, res) => {
+  app.post('/recipes', authenticate, (req, res) => {
     console.log(req.body);
 
     const recipe = new Recipe({
+      userID: req.user._id,
       title: req.body.title,
       dishType: req.body.dishType,
       ingredients: req.body.ingredients, 
@@ -28,14 +29,14 @@ module.exports = app => {
     .catch(err => { res.status(400).send(err) });
   });
 
-  app.get('/recipes', (req, res) => {
-    Recipe.find().then((recipes) => { 
+  app.get('/recipes', authenticate, (req, res) => {
+    Recipe.find({userID:req.user._id}).then((recipes) => { 
       res.send({recipes}) 
     }) //{} syntax vs res.json(...map etc.)
     .catch(err => { res.status(400).send(err) });
   });
 
-  app.get('/recipes/:id', (req, res) => {
+  app.get('/recipes/:id', authenticate, (req, res) => {
 
     if(!ObjectID.isValid(req.params.id)) {
       return res.sendStatus(404);
@@ -53,7 +54,7 @@ module.exports = app => {
       });
   });
 
-  app.delete('/recipes/:id', (req, res) => {
+  app.delete('/recipes/:id', authenticate, (req, res) => {
 
     if (!ObjectID.isValid(req.params.id)) {
       return res.status(404).send('Invalid ID');
@@ -71,10 +72,6 @@ module.exports = app => {
         res.status(400).json({error: 'something went wrong'});
       });
     });
-
-
-
-
 
 
 

@@ -57,7 +57,7 @@ userSchema.methods.generateAuthToken = function() {
 };
 
 userSchema.methods.removeToken = function(token) {
-  const user = this;
+  const user = this; 
 
   return user.update({
     $pull: {
@@ -73,7 +73,7 @@ userSchema.statics.findByToken = function(token) {
   try {
     decoded = jwt.verify(token, 'abc123');
   } catch (err) {
-    return Promise.reject();
+    return Promise.reject('some rejection value'); //value in err for catch on user routes
   }
 
   return User.findOne({

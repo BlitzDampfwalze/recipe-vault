@@ -15,7 +15,7 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 require('./routes/recipeRoutes')(app);
-// require('./routes/userRoutes')(app);
+require('./routes/userRoutes')(app);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`listening on port: ${PORT}`));

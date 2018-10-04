@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const recipeSchema = new mongoose.Schema(
   {
+    userID: {required:true, type:mongoose.Schema.Types.ObjectId, index: true},
     title: String,
     dishType: String,
     ingredients: [String], 
