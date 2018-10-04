@@ -31,7 +31,7 @@ module.exports = app => {
 
   app.post('/users/login', (req, res) => {
     const body = pick(req.body, ['email', 'password']);
-
+    console.log('hello');
     User.findByCredentials(body.email, body.password)
       .then(user => {
         return user.generateAuthToken().then(token => {

@@ -13,21 +13,32 @@ let recipeTemplate = `
 <button id="delete-recipe">Delete</button>
 </div>`;
 
+
 const getDisplayVaultRecipes = () => {
-  // const editRecipeButton = $('#edit-recipe');
+  const authToken = localStorage.getItem(TOKEN);
+
   const deleteRecipeButton = $('#delete-recipe');
 
-  // const editRecipe = () => {
-  //   <div><a href="enter-recipe.html">add recipe</a></div>
-  // };
   const deleteRecipe = () => {
+    // fetch('/delete/:id', {
+    //   headers: {
+    //     "x-auth": authToken
+    //   },
+    //   method: 'DELETE'
+    // })
+    // .then(res => {
+    //   if(res.ok) {
+    //     console.log(res.json())
+    //     return res.json()
+    //   }
+    //   return Promise.reject();
+    // })
+    // .then()
 
-  };
-  
-  // editRecipeButton.click(editRecipe);
+  }; 
+
   deleteRecipeButton.click(deleteRecipe);
-
-  const authToken = localStorage.getItem(TOKEN);
+  
   fetch('/recipes', {
     headers: {
       "x-auth": authToken,

@@ -11,14 +11,14 @@
   </head>
   <body>
     <header id="nav-bar">
-      <div><a href="index.html">Search for Recipes</a></div>  
+      <div><a href="index.html">Home</a></div>  
       <div><a href="recipe-vault.html">Recipe Vault</a></div>          
     </header>
     
     
     <form action="enter-recipe" id="recipe-entry">
         <label for="title" >Title</label>
-        <input type="text" id="title" class="inputs" placeholder="e.g., Apple Pie">
+        <input type="text" id="title" class="inputs" placeholder="e.g., Apple Pie" value="apple pie">
 
         <label for="dishType">Dish Type</label>
         <select id="dishType" class="inputs">
@@ -38,18 +38,18 @@
         <label for="addBox"><a href="#" id="addBox">Add Another Input Box</a></label>
         <div id="ingredients-wrapper">
             <p>
-                <label for="ingredients"><input type="text" id="ingredients" class="inputs" size="20" name="ingredient" value="" placeholder="ingredient" /></label>
+                <label for="ingredients"><input type="text" id="ingredients" class="inputs" size="20" name="ingredient" placeholder="ingredient" value="sugar" /></label>
             </p>
         </div>
 
         <label for="instructions">Instructions: </label>
-        <textarea id="instructions" class="inputs" rows="4" cols="50" placeholder="Enter instructions here!"></textarea>
+        <textarea id="instructions" class="inputs" rows="4" cols="50" placeholder="Enter instructions here!" >cook this</textarea>
 
         <label for="readyInMinutes">Ready in: </label>
-        <input type="number" id="readyInMinutes" class="inputs" name="readyIn" step="1" placeholder="number in minutes" />
+        <input type="number" id="readyInMinutes" class="inputs" name="readyIn" step="1" placeholder="number in minutes" value="35" />
 
         <label for="servings">Servings: </label>
-        <input type="number" id="servings" class="inputs" name="servings" placeholder="number of servings" />
+        <input type="number" id="servings" class="inputs" name="servings" placeholder="number of servings" value="4" />
 
         <label for="source">Source:</label>
         <input type="text" id="source" class="inputs" name="source" placeholder="website link or author's name" />

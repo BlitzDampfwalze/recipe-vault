@@ -34,9 +34,8 @@ const createUser = () => {
     });
 
     const url = isSignup? '/users' : '/users/login';
-    const result = isSignup? loginResult() : signupResult();
+    // const result = isSignup? loginResult() : signupResult();
 
-  console.log(formData)
   fetch(url, {
     method: 'POST',
     headers: {
@@ -54,7 +53,7 @@ const createUser = () => {
     console.log(user);
     localStorage.setItem(TOKEN, user.token)
     localStorage.setItem(ID, user.id)
-    result    
+    // result    
   })
   // const settings = {
   //   type: 'POST',
