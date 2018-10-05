@@ -10,24 +10,37 @@
     
   </head>
   <body>
-    <header id="nav-bar">    
-      <div><a href="enter-recipe.html">Add Recipe</a></div> 
-      <div class="sign-up-login">
-        <div class="user"><a href="user.html?signup">Sign-Up</a></div>
-        <div>/</div> 
-        <div class="user"><a href="user.html?login">Login</a></div>
-      </div>           
-    </header>
-    <main>
-      <h1><a class="h1" href="recipe-vault.html">Recipe Vault</a></h1>
-      <h2>Never lose your grandma's secret recipes again</h2>
-      <div class="more">
-        <div>read more...</div>
-        <div class="hidden">more info to go here</div>
+    <div class="video-container">
+      <div class="video-header">
+        <div class="video-wrapper">
+          <video poster="assets/img/Cest_chaud.jpg" autoplay='true' loop="true">
+            <source src="assets/video/Cest_chaud.mp4" type="video/mp4">
+            <source src="assets/video/Cest_chaud.webm" type="video/webm">
+          </video>
+        </div>
+        <div class="video-header-overlay"></div>
+        <div class="video-header-content">
+          <nav id="nav-bar">
+            <div><a href="enter-recipe.html">Add Recipe</a></div> 
+            <div class="user-nav">
+              <div class="user-nav-items"><a href="user.html?signup">Sign-Up</a></div>
+              <div>/</div> 
+              <div class="user-nav-items"><a href="user.html?login">Login</a></div>
+            </div>
+          </nav>
+          <main>
+            <h1><a class="h1" href="recipe-vault.html">Recipe Vault</a></h1>
+            <h2>Never lose your grandma's secret recipes again</h2>
+            <div class="more">
+              <div>read more...</div>
+              <div class="hidden">more info to go here</div>
+            </div>
+          </main> 
+        </div>          
       </div>
+    </div>
 
-    </main>
-    <div id="search-results"></div>
+    <!-- <div id="search-results"></div> -->
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="constants.js"></script>
