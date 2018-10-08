@@ -2,10 +2,12 @@
   box-sizing: border-box;
 }
 
-h1 a {
+.h1 {
   font-size: 4rem;
-  margin: 2rem 0;
+  /* margin: 2rem 0; */
   color:white;
+  text-decoration: none;
+  color: white;
 }
 
 a {
@@ -21,19 +23,20 @@ main {
   align-items: center;
 }
 
-#nav-bar {
+.nav-bar {
+  width: 100vw;
 	display: flex;
 	justify-content: space-between;
   padding: 20px 35px;
   
 }
 
-.user-nav {
+.nav-items {
   color: white;
   display: flex;
 } 
 
-.user-nav-items {
+.nav-space {
   padding: 0 5px;
 }
 
