@@ -7,11 +7,13 @@ const createUser = () => {
       loginTab.addClass('selected')
       signupTab.removeClass('selected')
       isSignup = false;
+      $('form').find('#password').attr("placeholder", "password")
     };
     const showSignup = () => {
       signupTab.addClass('selected')
       loginTab.removeClass('selected')
       isSignup = true;
+      $('form').find('#password').attr("placeholder", "more than five characters long")
     };
 
     loginTab.click(showLogin)
@@ -21,7 +23,7 @@ const createUser = () => {
       showSignup();
     }
 
-    $('#sign-up').submit(event => {
+    $('#sign-up-form').submit(event => {
       event.preventDefault();
 
     const formData = {};

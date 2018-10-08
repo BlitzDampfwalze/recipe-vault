@@ -5,3 +5,28 @@
 form {
   display: flex;
 }
+
+body {
+  background: url(../assets/img/vault-door-open.jpg) no-repeat;
+  background-size: cover;
+
+}
+
+#recipe-entry {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  color: white;
+  z-index: 2;
+}
+
+#recipe-entry-overlay {
+  background: #2a2b30;
+  opacity: 0.82;
+  border-radius: 5px;
+  padding: 80px;
+  max-width: 500px;
+  margin: 0 auto;
+  z-index: 1;
+}

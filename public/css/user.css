@@ -1,5 +1,10 @@
 .tabs {
   display: flex;
+  padding: 0 0 10px 0;
+}
+
+.tab {
+  cursor: pointer;
 }
 
 .tabs .tab {
@@ -9,3 +14,49 @@
 .tab.selected {
   font-weight: bold;
 }
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 15px;
+}
+
+#user-nav-bar {
+  width: 100vw;
+  display: flex;
+  padding: 45px 35px 55px;
+  text-align: center;
+}
+
+/* #h1-user {
+  padding: 45px 35px 55px;
+  margin: 25px;
+} */
+
+#sign-up-form button {
+  /* width: 100%; */
+  border-radius: 5px;
+
+  }
+
+#sign-up-form {
+  border-radius: 2.5px;
+  padding: 40px;
+  /* display: block; */
+  max-width: 315px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: rgb(17, 64, 130);
+  /* background: #FFFFFF; */
+  /* position: relative; */
+  /* z-index: 1; */
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4), 3px 5px 5px 0 rgba(0, 0, 0, 0.4);
+
+}
+
+#sign-up-form button {
+  cursor: pointer;
+}
+
+
