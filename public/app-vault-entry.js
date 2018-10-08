@@ -83,9 +83,10 @@ const postRecipe = () => {
       node.value = '';
     });
 
-
+  const authToken = localStorage.getItem(TOKEN);
   console.log(formData)
   const settings = {
+    headers: { "x-auth": authToken },
     type: 'POST',
     url: '/recipes',
     data: JSON.stringify(formData),
