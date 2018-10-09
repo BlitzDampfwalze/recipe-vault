@@ -41,73 +41,61 @@
 // }
 
 $(() => {
-
-const submitButton = $('#add-recipe');
-const editButton = $('#edit-recipe');
-let isEdit = new URLSearchParams(window.location.search).has("edit")
-
-const showSubmit = () => {
-  submitButton.removeClass('hidden')
-  postRecipe();
-};
-
-const showEdit = () => {
-  editButton.removeClass('hidden')
-  editRecipe();
-};
-
-submitButton.click(showSubmit)
-editButton.click(showEdit)
+const searchParams = new URLSearchParams(window.location.search)
+const isEdit = searchParams.has('edit')
+const recipeID = searchParams.get('edit');
+const authToken = localStorage.getItem(TOKEN);
 
 if (isEdit) {
-  showEdit();
+  //retrieve data for this recipe, then populate the fields with it.
+  fetch(`/recipes/${recipeID}`, 
+  {
+    headers: {
+      "x-auth": authToken,
+    }
+  }
+  ).then(res => {
+    if (res.ok) {
+      return res.json()
+    }
+    return Promise.reject();
+  }).then(body => {
+    const recipe = body.recipe;
+    // $('#title').val(recipe.title);
+    // $('#dishType').val(recipe.dishType);
+    $('form').find('.inputs').each(function(index, node) {
+      node.value = recipe[node.id];      
+    });
+  })
 }
-else {
-  showSubmit();
-}
+
+$('#recipe-entry').submit(event => {
+  event.preventDefault();
+
+  const formData = {};
+
+  // console.log($('form').find('.inputs'))
+  $('form').find('.inputs').each(function(index, node) {
+    formData[node.id] = node.value;      
+  });
+  $('form').find('.inputs').each(function(index, node) {
+    node.value = '';
+  });
+  console.log(formData)
+  const url = isEdit? `/recipes/${recipeID}` : '/recipes'
+  fetch(url, {
+    headers: {
+      "x-auth": authToken,
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    method: 'PUT',
+    body: JSON.stringify(formData)
+  }).then(res => {
+    if (res.ok) {
+      return res.json()
+    }
+    return Promise.reject();
+  }).then(body => console.log(body))
 
 })
-
-const postRecipe = () => {
-
-    $('#recipe-entry').submit(event => {
-      event.preventDefault();
-
-    const formData = {};
-
-    // console.log($('form').find('.inputs'))
-    $('form').find('.inputs').each(function(index, node) {
-      formData[node.id] = node.value;      
-    });
-    $('form').find('.inputs').each(function(index, node) {
-      node.value = '';
-    });
-
-  const authToken = localStorage.getItem(TOKEN);
-  console.log(formData)
-  const settings = {
-    headers: { "x-auth": authToken },
-    type: 'POST',
-    url: '/recipes',
-    data: JSON.stringify(formData),
-    // data: { 
-    //   "title": String,
-    //   "dishType": String,
-    //   "ingredients": [String], 
-    //   "instructions": String,
-    //   "readyInMinutes": Number,
-    //   "image": String,
-    //   "servings": Number,
-    //   "source": String,
-    // },
-    // success: '',
-    contentType: 'application/json',
-    dataType: 'json'
-  }
-  $.ajax(settings);
-  })
-}; 
-
-const editRecipe = () => {
-  //get to pre-populate the fields?
-};
+})

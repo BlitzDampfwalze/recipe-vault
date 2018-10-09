@@ -12,6 +12,14 @@ body {
 
 }
 
+#edit-button {
+  color: black;
+}
+
+#delete-recipe {
+  cursor: pointer;
+}
+
 #recipe-entry {
   display: flex;
   flex-direction: column;
@@ -29,4 +37,13 @@ body {
   max-width: 500px;
   margin: 0 auto;
   z-index: 1;
+}
+
+.vault-recipes {
+  max-width: 400px;
+  margin: 20px auto;
+  background: lightskyblue;
+  border-width: 10px;
+  border-style: groove;
+  border-color: white;
 }

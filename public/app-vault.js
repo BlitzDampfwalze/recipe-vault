@@ -1,4 +1,4 @@
-let recipeTemplate = `
+const recipeTemplate = (id) => `
 <div class="vault-recipes">
 <h2 class="recipe-title"></h2>
 <div class="recipe-type"></div>
@@ -9,36 +9,15 @@ let recipeTemplate = `
 <div class="recipe-servings"></div>
 <div class="recipe-source"></div>
 <div class="recipe-date">Date: </div>
-<button><a href="enter-recipe.html?edit">Edit</a></button>
-<button id="delete-recipe">Delete</button>
+<button><a id="edit-button" href="enter-recipe.html?edit=${id}">Edit</a></button>
+<button class="delete-button" data-recipe-id="${id}">Delete</button>
 </div>`;
 
 
 const getDisplayVaultRecipes = () => {
+
   const authToken = localStorage.getItem(TOKEN);
 
-  const deleteRecipeButton = $('#delete-recipe');
-
-  const deleteRecipe = () => {
-    // fetch('/delete/:id', {
-    //   headers: {
-    //     "x-auth": authToken
-    //   },
-    //   method: 'DELETE'
-    // })
-    // .then(res => {
-    //   if(res.ok) {
-    //     console.log(res.json())
-    //     return res.json()
-    //   }
-    //   return Promise.reject();
-    // })
-    // .then()
-
-  }; 
-
-  deleteRecipeButton.click(deleteRecipe);
-  
   fetch('/recipes', {
     headers: {
       "x-auth": authToken,
@@ -51,9 +30,11 @@ const getDisplayVaultRecipes = () => {
     return Promise.reject();
   })
   .then(body => {
+      // console.log(body)
     let recipe = body.recipes.map(post => {
-      let element = $(recipeTemplate);
-      element.attr('id', post.id);
+      // console.log(post);
+      let element = $(recipeTemplate(post._id));
+      element.attr('id', post._id);
       element.find('.recipe-title').text(post.title);
       element.find('.recipe-type').text(`Dish type: ${post.dishType}`);
       element.find('.recipe-ingredients').html(post.ingredients.map(ingredient => `<li>${ingredient}</li>`));
@@ -66,8 +47,40 @@ const getDisplayVaultRecipes = () => {
       return element;
     });
     $('#vault-recipes-wrapper').html(recipe);
-  })
 
-};
+  })
+}
+
 
 getDisplayVaultRecipes();
+
+$(() => {
+
+  $('#vault-recipes-wrapper').on('click', '.delete-button', function(e) {
+    let recipeID = $(e.currentTarget).attr('data-recipe-id');
+    console.log(recipeID)
+
+    const authToken = localStorage.getItem(TOKEN);
+
+    fetch(`recipes/${recipeID}`, {
+      headers: {
+        "x-auth": authToken
+      },
+      method: 'DELETE'
+    })
+    .then(res => {
+      if(res.ok) {
+        console.log(res.json())
+        return res.json()
+      }
+      return Promise.reject();
+    })
+    // .then(body => console.log(body))
+
+
+  });
+
+})
+
+
+

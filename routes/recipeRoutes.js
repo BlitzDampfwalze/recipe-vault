@@ -8,7 +8,7 @@ const { Recipe } = require('../models/Recipe');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
-  app.post('/recipes', authenticate, (req, res) => {
+  app.put('/recipes', authenticate, (req, res) => {
     console.log(req.body);
 
     const recipe = new Recipe({
@@ -24,6 +24,27 @@ module.exports = app => {
     });
 
     recipe.save().then(recipe => { 
+      res.send(recipe); 
+    })
+    .catch(err => { res.status(400).send(err) });
+  });
+
+  app.put('/recipes/:id', authenticate, (req, res) => {
+    console.log(req.body);
+
+    Recipe.findOneAndUpdate(
+      {_id: req.params.id, userID: req.user._id},
+      {
+        title: req.body.title,
+        dishType: req.body.dishType,
+        ingredients: req.body.ingredients, 
+        instructions: req.body.instructions,
+        readyInMinutes: req.body.readyInMinutes,
+        image: req.body.image,
+        servings: req.body.servings,
+        source: req.body.source
+      }
+    ).then(recipe => { 
       res.send(recipe); 
     })
     .catch(err => { res.status(400).send(err) });

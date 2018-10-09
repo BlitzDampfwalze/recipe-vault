@@ -20,9 +20,9 @@
     </nav>
     
     <div id="recipe-entry-overlay">
-      <form action="enter-recipe" id="recipe-entry">
+      <form id="recipe-entry">
           <label for="title" >Title</label>
-          <input type="text" id="title" class="inputs" placeholder="e.g., Apple Pie" value="apple pie">
+          <input type="text" id="title" class="inputs" placeholder="e.g., Apple Pie">
 
           <label for="dishType">Dish Type</label>
           <select id="dishType" class="inputs">
@@ -42,24 +42,23 @@
           <label for="addBox"><a href="#" id="addBox">Add Another Input Box</a></label>
           <div id="ingredients-wrapper">
               <p>
-                  <label for="ingredients"><input type="text" id="ingredients" class="inputs" size="20" name="ingredient" placeholder="ingredient" value="sugar" /></label>
+                  <label for="ingredients"><input type="text" id="ingredients" class="inputs" size="20" name="ingredient" placeholder="ingredient"/></label>
               </p>
           </div>
 
           <label for="instructions">Instructions: </label>
-          <textarea id="instructions" class="inputs" rows="4" cols="50" placeholder="Enter instructions here!" >cook this</textarea>
+          <textarea id="instructions" class="inputs" rows="4" cols="50" placeholder="Enter instructions here!" ></textarea>
 
           <label for="readyInMinutes">Ready in: </label>
-          <input type="number" id="readyInMinutes" class="inputs" name="readyIn" step="1" placeholder="number in minutes" value="35" />
+          <input type="number" id="readyInMinutes" class="inputs" name="readyIn" step="1" placeholder="number in minutes" />
 
           <label for="servings">Servings: </label>
-          <input type="number" id="servings" class="inputs" name="servings" placeholder="number of servings" value="4" />
+          <input type="number" id="servings" class="inputs" name="servings" placeholder="number of servings" />
 
           <label for="source">Source:</label>
           <input type="text" id="source" class="inputs" name="source" placeholder="website link or author's name" />
 
-          <button type="submit" id="add-recipe" class="hidden">Enter</button>
-          <button type="submit" id="edit-recipe" class="hidden">Save</button>
+          <button type="submit">Save</button>
       </form>
     </div>
 
