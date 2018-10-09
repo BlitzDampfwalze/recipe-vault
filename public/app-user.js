@@ -1,4 +1,7 @@
 const createUser = () => {
+
+    userCheckLoggedin();
+
     const loginTab = $('#loginTab');
     const signupTab = $('#signupTab');
     let isSignup = new URLSearchParams(window.location.search).has("signup")
@@ -55,6 +58,7 @@ const createUser = () => {
     console.log(user);
     localStorage.setItem(TOKEN, user.token)
     localStorage.setItem(ID, user.id)
+    window.location = '/recipe-vault.html'
     // result    
   })
   // const settings = {

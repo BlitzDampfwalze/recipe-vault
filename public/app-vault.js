@@ -15,7 +15,7 @@ const recipeTemplate = (id) => `
 
 
 const getDisplayVaultRecipes = () => {
-
+  checkLoggedout()
   const authToken = localStorage.getItem(TOKEN);
 
   fetch('/recipes', {
@@ -23,40 +23,34 @@ const getDisplayVaultRecipes = () => {
       "x-auth": authToken,
     }
   })
-  .then(res => {
-    if (res.ok) {
-      return res.json()
-    }
-    return Promise.reject();
-  })
-  .then(body => {
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject();
+    })
+    .then(body => {
       // console.log(body)
-    let recipe = body.recipes.map(post => {
-      // console.log(post);
-      let element = $(recipeTemplate(post._id));
-      element.attr('id', post._id);
-      element.find('.recipe-title').text(post.title);
-      element.find('.recipe-type').text(`Dish type: ${post.dishType}`);
-      element.find('.recipe-ingredients').html(post.ingredients.map(ingredient => `<li>${ingredient}</li>`));
-      element.find('.recipe-instructions').text(post.instructions);
-      element.find('.recipe-readyInMinutes').text(`Ready in ${post.readyInMinutes} minutes`);
-      element.find('.recipe-image').text(post.image);
-      element.find('.recipe-servings').text(`Servings: ${post.servings}`);
-      element.find('.recipe-source').text(`Source: ${post.source}`);
-      element.find('.recipe-date').text(`Published on: ${new Date(post.created).toDateString()}`);
-      return element;
-    });
-    $('#vault-recipes-wrapper').html(recipe);
+      let recipe = body.recipes.map(post => {
+        // console.log(post);
+        let element = $(recipeTemplate(post._id));
+        element.attr('id', post._id);
+        element.find('.recipe-title').text(post.title);
+        element.find('.recipe-type').text(`Dish type: ${post.dishType}`);
+        element.find('.recipe-ingredients').html(post.ingredients.map(ingredient => `<li>${ingredient}</li>`));
+        element.find('.recipe-instructions').text(post.instructions);
+        element.find('.recipe-readyInMinutes').text(`Ready in ${post.readyInMinutes} minutes`);
+        element.find('.recipe-image').text(post.image);
+        element.find('.recipe-servings').text(`Servings: ${post.servings}`);
+        element.find('.recipe-source').text(`Source: ${post.source}`);
+        element.find('.recipe-date').text(`Published on: ${new Date(post.created).toDateString()}`);
+        return element;
+      });
+      $('#vault-recipes-wrapper').html(recipe);
 
-  })
-}
+    })
 
-
-getDisplayVaultRecipes();
-
-$(() => {
-
-  $('#vault-recipes-wrapper').on('click', '.delete-button', function(e) {
+  $('#vault-recipes-wrapper').on('click', '.delete-button', function (e) {
     let recipeID = $(e.currentTarget).attr('data-recipe-id');
     console.log(recipeID)
 
@@ -68,19 +62,21 @@ $(() => {
       },
       method: 'DELETE'
     })
-    .then(res => {
-      if(res.ok) {
-        console.log(res.json())
-        return res.json()
-      }
-      return Promise.reject();
-    })
-    // .then(body => console.log(body))
-
+      .then(res => {
+        if (res.ok) {
+          $(`#${recipeID}`).remove()
+          console.log(res)
+          return
+        }
+        return Promise.reject();
+      })
 
   });
 
-})
+}
+
+getDisplayVaultRecipes();
+
 
 
 

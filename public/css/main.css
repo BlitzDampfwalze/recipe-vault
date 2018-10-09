@@ -46,6 +46,9 @@ main {
   text-align: center;
 }
 
+.logout {
+  cursor: pointer;
+}
 /* #search-results {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
