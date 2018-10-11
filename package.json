@@ -28,6 +28,8 @@
     "validator": "^10.7.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "expect": "^23.5.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.4",

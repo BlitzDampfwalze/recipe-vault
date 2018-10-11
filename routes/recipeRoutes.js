@@ -26,7 +26,7 @@ module.exports = app => {
     recipe.save().then(recipe => { 
       res.send(recipe); 
     })
-    .catch(err => { res.status(500).send(err) });
+    .catch(err => { res.status(400).send(err) });
   });
 
   app.put('/recipes/:id', authenticate, (req, res) => {
@@ -47,14 +47,14 @@ module.exports = app => {
     ).then(recipe => { 
       res.send(recipe); 
     })
-    .catch(err => { res.status(500).send(err) });
+    .catch(err => { res.status(400).send(err) });
   });
 
   app.get('/recipes', authenticate, (req, res) => {
     Recipe.find({userID:req.user._id}).then((recipes) => { 
       res.send({recipes}) 
     }) //{} syntax vs res.json(...map etc.)
-    .catch(err => { res.status(500).send(err) });
+    .catch(err => { res.status(400).send(err) });
   });
 
   app.get('/recipes/:id', authenticate, (req, res) => {
@@ -71,7 +71,7 @@ module.exports = app => {
         })
         .catch(err => {
         console.error(err);
-        res.status(500).json({error: 'something went wrong'});
+        res.status(400).json({error: 'something went wrong'});
       });
   });
 
@@ -90,7 +90,7 @@ module.exports = app => {
       })
       .catch(err => {
         console.error(err);
-        res.status(500).json({error: 'something went wrong'});
+        res.status(400).json({error: 'something went wrong'});
       });
     });
 

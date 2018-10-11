@@ -62,13 +62,12 @@ const createUser = () => {
       })
       .catch(err => {
         window.alert(err);
-        }
+      }
       )
 
   })
 };
 createUser();
-
 
 
  // const settings = {

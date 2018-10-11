@@ -25,7 +25,6 @@ module.exports = app => {
       });
   });
 
-  //check user login status
   app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
   });
@@ -41,7 +40,7 @@ module.exports = app => {
         });
       })
       .catch(err => {
-        res.status(500).send(err);
+        res.status(401).send(err);
       });
   });
 
