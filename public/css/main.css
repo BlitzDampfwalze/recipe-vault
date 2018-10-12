@@ -3,11 +3,22 @@
 }
 
 .h1 {
-  font-size: 4rem;
-  /* margin: 2rem 0; */
-  color:white;
-  text-decoration: none;
+  text-shadow:4px 4px 12px rgb(255,165,0);
+  font-weight: bold;
+  font-size: 5em;
   color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.2em; 
+  text-align: center;
+}
+
+.h2 {
+  text-shadow: 2px 2px black;
+  text-align: center;
 }
 
 a {
@@ -23,12 +34,15 @@ main {
   align-items: center;
 }
 
+nav {
+  padding: 20px 35px;
+  font-size: 1.3em;
+}
+
 .nav-bar {
   width: 100vw;
 	display: flex;
 	justify-content: space-between;
-  padding: 20px 35px;
-  
 }
 
 .nav-items {
@@ -38,12 +52,6 @@ main {
 
 .nav-space {
   padding: 0 5px;
-}
-
-.more {
-  font-weight: bold;
-  font-size: 1.4rem;
-  text-align: center;
 }
 
 .logout {
@@ -84,3 +92,63 @@ main {
 .video-header-content {
   z-index: 2;
 }
+
+.more {
+  font-weight: bold;
+  font-size: 1.7em;
+  text-align: center;
+}
+
+
+
+.accordion {
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+  /* text-align: center; */
+  /* outline: none; */
+  transition: 0.9s;
+}
+
+.more:hover {
+  border-radius: 8px;
+  background-color: rgba(88, 58, 0, 0.699);
+  border: 0.5px solid orange;
+  box-shadow: 2.5px 2.5px black;
+  text-shadow: 2px 2px black;
+}
+
+.panel {
+  padding: 0 18px 5px;
+  max-height: 0;
+  line-height: 1.6em;
+  max-width: 800px;
+  overflow: hidden;
+  transition: max-height 0.6s ease-out;
+}
+
+/* .background {
+  background-color: rgb(255,165,0, 0.15);
+} */
+
+@media screen and (max-width: 615px) {
+
+  body {
+    font-size: 12px;
+  }
+
+  .nav-bar {
+    padding: 12px 21px;
+  }
+
+  .vault-recipes {
+    margin: 10px auto;
+  }
+
+  body #recipe-entry-overlay {
+    padding: 40px;
+  }
+
+}
+
+
