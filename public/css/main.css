@@ -23,7 +23,7 @@ h2 {
 
 a {
   text-decoration: none;
-  color: white;
+  color: rgb(255, 201, 25);
 }
 
 
@@ -42,11 +42,13 @@ nav {
 .nav-bar {
   width: 100vw;
 	display: flex;
-	justify-content: space-between;
+  justify-content: space-between;
+  text-shadow:4px 4px 12px black;
+  
 }
 
 .nav-items {
-  color: white;
+  color: rgb(255, 201, 25);
   display: flex;
 } 
 
