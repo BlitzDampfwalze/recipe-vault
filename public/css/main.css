@@ -50,10 +50,16 @@ nav {
 .nav-items {
   color: rgb(255, 201, 25);
   display: flex;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow:4px 4px 12px black;
 } 
 
 .nav-space {
   padding: 0 5px;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow:4px 4px 12px black;
 }
 
 .logout {

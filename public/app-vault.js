@@ -9,8 +9,10 @@ const recipeTemplate = (id) => `
 <div class="recipe-servings"></div>
 <div class="recipe-source"></div>
 <div class="recipe-date">Date: </div>
+<div class="recipe-button-wrapper">
 <button><a id="edit-button" href="enter-recipe.html?edit=${id}">Edit</a></button>
 <button class="delete-button" data-recipe-id="${id}">Delete</button>
+</div>
 </div>`;
 
 
