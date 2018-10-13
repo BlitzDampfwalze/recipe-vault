@@ -39,6 +39,7 @@ const createUser = () => {
     });
 
     const url = isSignup ? '/users' : '/users/login';
+    const userError = isSignup ? 'username/email taken' : 'Incorrect email and/or password';
 
     fetch(url, {
       method: 'POST',
@@ -51,7 +52,7 @@ const createUser = () => {
         if (res.ok) {
           return res.json();
         }
-        return Promise.reject('Incorrect email and/or password');
+        return Promise.reject(userError);
       })
       .then(user => {
         console.log(user);
@@ -68,14 +69,3 @@ const createUser = () => {
   })
 };
 createUser();
-
-
- // const settings = {
-  //   type: 'POST',
-  //   url: url,
-  //   data: JSON.stringify(formData),
-  //   success: '',
-  //   contentType: 'application/json',
-  //   dataType: 'json'
-  // }
-  // $.ajax(settings);

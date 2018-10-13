@@ -1,59 +1,63 @@
+require('../config/config');
+console.log(process.env.MONGODB_URI_LIVE);
+
+const mongoose = require('mongoose');
 const { ObjectID } = require('mongodb');
 const expect = require('expect');
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
+
 
 const { app } = require('../server');
 const { Recipe } = require('../models/Recipe');
 const { User } = require('../models/User');
 // const { recipes, populateRecipes, users, populateUsers } = require('./seed/seed')
 
-// const userOneId = new ObjectID();
-// const userTwoId = new ObjectID();
-// const users = [
-//   {
-//     _id: userOneId,
-//     email: 'tester@example.com',
-//     password: 'user1Pass',
-//     tokens: [{
-//       access: 'auth',
-//       token: jwt.sign({_id: userOneId, access: 'auth'}, 'abc123').toString()
-//     }]
-//   },
-//   {
-//     _id: userTwoId,
-//     email: 'tester2@example.com',
-//     password: 'user2Pass'
-//   }
-// ]
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI_TEST, { useNewUrlParser: true });
+
+//create new user and login user test, then you can add recipes/post to this user
+
+const userOneId = new ObjectID();
+const userTwoId = new ObjectID();
+const users = {
+  _id: userOneId,
+  email: 'test@gmail.com',
+  password: 'asdf123',
+  tokens: [{
+    access: 'auth',
+    token: jwt.sign({ _id: userOneId, access: 'auth' }, 'abc123').toString()
+  }]
+};
+
 
 const recipes = [
   {
-    _id: new ObjectID(),
+    userID: userOneId,
     dishType: "dessert",
     ingredients: ["flour", "water", "apples"],
     instructions: "instructions alsdjflasdf",
     readyInMinutes: 20,
   },
   {
-    _id: new ObjectID(),
+    userID: userOneId,
     dishType: "main course",
     ingredients: ["seasoning", "meat", "stuff"],
     instructions: "instructions alsdsdf",
     readyInMinutes: 30,
   }]
 
-// beforeEach((done) => {
-//   User.remove({}).then(() => {
-//     const userOne = new User(users[0]).save();
-//     const userTwo = new User(users[1]).save();
+beforeEach((done) => {
+  User.deleteMany({}).then(() => {
+    const userOne = new User(users).save();
+    // const userTwo = new User(users[1]).save();
 
-//     return Promise.all([userOne, userTwo])
-//   }).then(()=> done());
-// });
+    return Promise.all([userOne])
+  }).then(() => done());
+});
 
 beforeEach((done) => {
-  Recipe.remove({}).then(() => {
+  Recipe.deleteMany({}).then(() => {
     Recipe.insertMany(recipes);
   }).then(() => done());
 });
@@ -62,11 +66,14 @@ describe('POST /recipes', () => {
   it.only('should create new recipe', (done) => {
 
     const newRecipe = {
-      _id: new ObjectID(),
+      userID: userOneId,
+      title: "pies",
       dishType: "dessert",
       ingredients: ["flour", "water", "apples"],
       instructions: "instructions alsdjflasdf",
       readyInMinutes: 20,
+      servings: 6,
+      source: 'website'
     }
 
     request(app)
@@ -74,6 +81,7 @@ describe('POST /recipes', () => {
       .send(newRecipe)
       .expect(200)
       .expect((res) => {
+        // console.log('response:', res);
         // expect(res.body._id).toBe(`${ObjectID}`);
         expect(res.body.dishType).toBe('dessert');
         expect(res.body.ingredients.length).toBe(3);

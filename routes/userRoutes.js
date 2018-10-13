@@ -4,6 +4,7 @@ const { User } = require('../models/User');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
+  //User sign-up route
   app.post('/users', (req, res) => {
     const body = pick(req.body, ['email', 'password']);
     const user = new User(body);
@@ -15,27 +16,27 @@ module.exports = app => {
       })
       .then(token => {
         // res.header('x-auth', token).send(user);
-        res.send({id:user._id, email:user.email, token})
+        res.send({ id: user._id, email: user.email, token })
       })
       .catch(err => {
-        if(err.code === 11000) {
-          return res.status(401).send({message: 'username/email taken'})
+        if (err.code === 11000) {
+          return res.status(409).send({ message: 'username/email taken' })
         }
         res.sendStatus(500);
       });
   });
-
+  //User authentication route
   app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
   });
-
+  //User login route
   app.post('/users/login', (req, res) => {
     const body = pick(req.body, ['email', 'password']);
     console.log('hello');
     User.findByCredentials(body.email, body.password)
       .then(user => {
         return user.generateAuthToken().then(token => {
-          res.send({id:user._id, email:user.email, token})
+          res.send({ id: user._id, email: user.email, token })
           // header('x-auth', token).send(user);
         });
       })

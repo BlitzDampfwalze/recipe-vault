@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      minlength: 1,
+      minlength: 5,
       trim: true,
       lowercase: true,
       unique: true,
@@ -24,27 +24,27 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
     },
     tokens: [{
-        access: {
-          type: String,
-          required: true,
-        },
-        token: {
-          type: String,
-          required: true,
-        },
-      }]
+      access: {
+        type: String,
+        required: true,
+      },
+      token: {
+        type: String,
+        required: true,
+      },
+    }]
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
-userSchema.methods.toJSON = function() {
+userSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
 
   return pick(userObject, ['_id', 'email']);
 };
 
-userSchema.methods.generateAuthToken = function() {
+userSchema.methods.generateAuthToken = function () {
   const user = this;
   const access = 'auth';
   const token = jwt.sign({ _id: user._id.toHexString(), access }, 'abc123').toString();
@@ -56,8 +56,8 @@ userSchema.methods.generateAuthToken = function() {
   });
 };
 
-userSchema.methods.removeToken = function(token) {
-  const user = this; 
+userSchema.methods.removeToken = function (token) {
+  const user = this;
 
   return user.update({
     $pull: {
@@ -66,7 +66,7 @@ userSchema.methods.removeToken = function(token) {
   });
 };
 
-userSchema.statics.findByToken = function(token) {
+userSchema.statics.findByToken = function (token) {
   const User = this;
   let decoded;
 
@@ -83,7 +83,7 @@ userSchema.statics.findByToken = function(token) {
   });
 };
 
-userSchema.statics.findByCredentials = function(email, password) {
+userSchema.statics.findByCredentials = function (email, password) {
   const User = this;
 
   return User.findOne({ email }).then(user => {
@@ -103,7 +103,7 @@ userSchema.statics.findByCredentials = function(email, password) {
   });
 };
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   const user = this;
 
   if (user.isModified('password')) {

@@ -55,7 +55,7 @@ $(() => {
           window.location = '/recipe-vault.html'
           return
         }
-        return Promise.reject('');
+        return Promise.reject('INCOMPLETE FIELD - Please fill in all fields');
       })
       .catch(err => {
         window.alert(err);
