@@ -8,5 +8,5 @@
 //     process.env.MONGODB_URI = 'mongodb://PaulL:pie4paul@ds257752.mlab.com:57752/recipe-vault';
 // }
 
-    process.env.MONGODB_URI_LIVE = 'mongodb://PaulL:pie4paul@ds257752.mlab.com:57752/recipe-vault';
-    process.env.MONGODB_URI_TEST = 'mongodb://PaulL:pie4paul@ds131323.mlab.com:31323/recipe-vault-test';
+process.env.MONGODB_URI_LIVE = 'mongodb://PaulL:pie4paul@ds257752.mlab.com:57752/recipe-vault';
+process.env.MONGODB_URI_TEST = 'mongodb://PaulL:pie4paul@ds131323.mlab.com:31323/recipe-vault-test';

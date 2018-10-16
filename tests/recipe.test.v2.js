@@ -1,7 +1,10 @@
-// const expect = require('expect');
-// const request = require('supertest');
-const expect = require('chai').expect;
+require('../config/config');
+console.log(process.env.MONGODB_URI_LIVE);
+
+const mongoose = require('mongoose');
 const { ObjectID } = require('mongodb');
+
+const expect = require('chai').expect;
 
 const { app } = require('../server');
 const { Recipe } = require('../models/Recipe');
@@ -11,24 +14,60 @@ const chaiHttp = require('chai-http');
 const should = chai.should();
 chai.use(chaiHttp);
 
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI_TEST, { useNewUrlParser: true });
+
+const userOneId = new ObjectID();
+// const userTwoId = new ObjectID();
+const users = [
+  {
+    _id: userOneId,
+    email: 'test@gmail.com',
+    password: 'asdf123',
+    tokens: [{
+      access: 'auth',
+      token: jwt.sign({ _id: userOneId, access: 'auth' }, 'abc123').toString()
+    }]
+  },
+  // {
+  //   _id: userOneId,
+  //   email: 'test2@gmail.com',
+  //   password: 'asdf1234',
+  //   tokens: [{
+  //     access: 'auth',
+  //     token: jwt.sign({ _id: userOneId, access: 'auth' }, 'abc123').toString()
+
+  //   }]
+  // }
+]
+
 const recipes = [
   {
-    // _id: new ObjectID(),
-    dishTypes: "dessert",
+    userID: userOneId,
+    dishType: "dessert",
     ingredients: ["flour", "water", "apples"],
     instructions: "instructions alsdjflasdf",
     readyInMinutes: 20,
   },
   {
-    // _id: new ObjectID(),
-    dishTypes: "main course",
+    userID: userOneId,
+    dishType: "main course",
     ingredients: ["seasoning", "meat", "stuff"],
     instructions: "instructions alsdsdf",
     readyInMinutes: 30,
   }]
 
+
 beforeEach((done) => {
-  Recipe.remove({}).then(() => {
+  User.deleteMany({}).then(() => {
+    const userOne = new User(users[0]).save();
+    return Promise.all([userOne])
+  }).then(() => done());
+});
+
+
+beforeEach((done) => {
+  Recipe.deleteMany({}).then(() => {
     Recipe.insertMany(recipes);
   }).then(() => done());
 });

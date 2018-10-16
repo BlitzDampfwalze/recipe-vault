@@ -40,7 +40,7 @@ const createUser = () => {
 
     const url = isSignup ? '/users' : '/users/login';
     const userError = isSignup ? 'username/email taken' : 'Incorrect email and/or password';
-
+    console.log(formData)
     fetch(url, {
       method: 'POST',
       headers: {

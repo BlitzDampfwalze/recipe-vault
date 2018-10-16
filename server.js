@@ -6,11 +6,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI_LIVE, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI_LIVE, { useNewUrlParser: true });
 
 const app = express();
 
-app.use(express.static('public')); 
+app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
