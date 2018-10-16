@@ -73,29 +73,64 @@ beforeEach((done) => {
 });
 
 
-describe('POST /recipes', () => {
-  it.only('should create new recipe', () => {
+describe('Recipe Posts', function() {
+  // before(function() {
+  //   return runServer();
+  // });
 
-    const newRecipe = {
-      // _id: new ObjectID(),
-      dishTypes: "dessert",
-      ingredients: ["flour", "water", "apples"],
-      instructions: "instructions alsdjflasdf",
-      readyInMinutes: 20,
-    }
+  // after(function() {
+  //   return closeServer();
+  // });
 
-    chai.request(app)
-      .post('/recipes')
-      .send(newRecipe)
-      .then(function (err, res) {
-        console.log("line 51", newRecipe);
-        res.should.have.status(201);
-        res.should.be.json;
-        res.body.should.be.a('object');
-        done();
-      })
-      .catch(err => console.log({ err }));
+  it('GET /recipes', () => {
+    return chai
+      .request(app)
+      .get('/recipes')
+      .set('x-auth', users[0].tokens[0].token) // set?
+      .then((res) => {
+        expect(res).to.have.status(200)
+        expect(res).to.be.json;
+        expect(res.body).to.be.a('array');
+        expect(res.body.length).to.be.above(0);
+        res.body.forEach((item) => {
+          expect(item).to.be.a('object');
+          expect(item).to.have.all.keys(
+            "id",
+            "title",
+            "dishType",
+            "ingredients",
+            "readyInMinutes",
+            "servings",
+            "source",
+          );
+        }),
+      }),
   })
+}
+
+// describe('POST /recipes', () => {
+//   it.only('should create new recipe', () => {
+
+//     const newRecipe = {
+//       // _id: new ObjectID(),
+//       dishTypes: "dessert",
+//       ingredients: ["flour", "water", "apples"],
+//       instructions: "instructions alsdjflasdf",
+//       readyInMinutes: 20,
+//     }
+
+//     chai.request(app)
+//       .post('/recipes')
+//       .send(newRecipe)
+//       .then(function (err, res) {
+//         console.log("line 51", newRecipe);
+//         res.should.have.status(201);
+//         res.should.be.json;
+//         res.body.should.be.a('object');
+//         done();
+//       })
+//       .catch(err => console.log({ err }));
+//   })
   //     .expect(200)
   //     .expect((res) => {
   //       // expect(res.body._id).toBe(`${ObjectID}`);
