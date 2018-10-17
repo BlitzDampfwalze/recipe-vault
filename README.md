@@ -2,7 +2,7 @@
 
 ## Screenshots
 
-Home Page View | Login Page View #2
+Home Page View | Login Sign-up Page View
 :-------------------------:|:-------------------------:
 ![Homepage](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/Recipe-Vault-Home.JPG)  |  ![Sign-up](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/Recipe-Vault-Signup.JPG)
 User Recipes | Adding User Recipes
@@ -24,3 +24,9 @@ The app's functionality includes:
 ## Technology
 * Front-End: HTML5 | CSS3 | JavaScript ES6 | jQuery
 * Back-End: Node.js | Express.js | Mocha | Supertest | RESTful API Endpoints | MongoDB | Mongoose
+
+## Responsive
+App is strongly built to be usuable on mobile devices, as well as responsive across mobile, tablet, laptop, and desktop screen resolutions.
+
+## Development Roadmap
+This is v1.0 of the app, but pursuing future enhancements
