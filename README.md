@@ -9,9 +9,9 @@ Screenshots
 Working prototype https://recipe-vault-node-capstone.herokuapp.com/
 
 Wireframes 
-![Your Recipe Vault](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/wireframe-Recipe-homepage.JPG)
-![Your Recipe Vault](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/wireframe-Recipe-enter-recipe.JPG)
-![Your Recipe Vault](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/wireframe-Recipe-your-recipe.JPG)
+![Wireframe of homepage](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/wireframe-Recipe-homepage.jpg)
+![Wireframe of adding recipes](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/wireframe-Recipe-enter-recipe.jpg)
+![Wireframe of your recipes](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/wireframe-Recipe-your-recipes.jpg)
 
 Functionality
 Create user account that stores information unique to the user
