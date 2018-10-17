@@ -1,17 +1,13 @@
 checkLoggedin();
 
 $(() => {
-
   const readmore = document.getElementsByClassName('accordion');
-
 
   let i = null;
 
   for (i = 0; i < readmore.length; i++) {
     readmore[i].addEventListener('click', function () {
       this.classList.toggle('active');
-
-      // document.getElementsByClassName('more').classList.toggle('background');
 
       if (this.classList.contains('active')) {
         $('.accordion').text('show less...')
@@ -27,5 +23,4 @@ $(() => {
       }
     });
   }
-
 })

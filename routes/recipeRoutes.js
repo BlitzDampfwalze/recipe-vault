@@ -80,9 +80,6 @@ module.exports = app => {
     }
 
     Recipe.findByIdAndRemove(req.params.id)
-      // .then((recipe) => { 
-      //   if (!recipe) { return res.status(404).send();}
-      //   res.send(recipe);}).catch((err) => {res.status(400).send();});
       .then(() => {
         res.sendStatus(204);
       })
@@ -91,30 +88,4 @@ module.exports = app => {
         res.status(500).json({ error: 'something went wrong' });
       });
   });
-
-  // app.patch ('/recipes/:id', authenticate, (req, res) => {
-  //   const id = req.params.id;
-
-  //   if (!ObjectID.isValid(id)) {
-  //     return res.status(400).send('Invalid ID');
-  //   }
-
-  //   Recipe.findOneAndUpdate(
-  //     {_id: id, userID: req.user._id},
-  //     { $set: body },
-  //     { new: true},
-  //   )
-  //   .then(recipe => {
-  //     if (!recipe) {
-  //       return res.status(404).send('Not Found');
-  //     }
-
-  //     res.send({ recipe });
-  //   })
-  //   .catch(err => {
-  //     res.status(400).send(err);
-  //   });
-  // });
-
-
 }

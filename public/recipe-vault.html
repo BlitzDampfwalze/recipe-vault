@@ -1,44 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/vault.css">
 
-    <title>Recipe Vault</title>
-    
-  </head>
-  <body>
-    <!-- <div class="video-container">
-      <div class="video-header">
-        <div class="video-wrapper">
-          <video poster="assets/img/Cest_chaud.jpg" autoplay='true' loop="true">
-            <source src="assets/video/Cest_chaud.mp4" type="video/mp4">
-            <source src="assets/video/Cest_chaud.webm" type="video/webm">
-          </video>
-        </div>
-        <div class="video-header-overlay"></div>
-        <div class="video-header-content"> -->
-          <nav class="nav-bar">
-            <div class="nav-items"><a href="enter-recipe.html">Add recipe</a></div>
-            <div class="nav-items">
-              <div><a href="index.html">Home</a></div>  
-              <div class="nav-space">|</div> 
-              <div class="logout" onclick="logout()">Log-out</div> 
-            </div>                
-          </nav>
-          <div id='vault-recipes-wrapper'></div>
-        <!-- </div>          
-      </div>
-    </div> -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/vault.css">
 
+  <title>Recipe Vault</title>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="constants.js"></script>
-    <script type="text/javascript" src="app-common.js"></script>
-    <script type="text/javascript" src="app-vault.js"></script>
+</head>
 
-  </body>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-items"><a href="enter-recipe.html">Add recipe</a></div>
+    <div class="nav-items">
+      <div><a href="index.html">Home</a></div>
+      <div class="nav-space">|</div>
+      <div class="logout" onclick="logout()">Log-out</div>
+    </div>
+  </nav>
+  <div id='vault-recipes-wrapper'></div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="constants.js"></script>
+  <script type="text/javascript" src="app-common.js"></script>
+  <script type="text/javascript" src="app-vault.js"></script>
+</body>
+
 </html>

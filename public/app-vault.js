@@ -39,7 +39,7 @@ const getDisplayVaultRecipes = () => {
         element.attr('id', post._id);
         element.find('.recipe-title').text(post.title);
         element.find('.recipe-type').text(`Dish type: ${post.dishType}`);
-        element.find('.recipe-ingredients').html(post.ingredients.map(ingredient => `<li>${ingredient}</li>`));
+        element.find('.recipe-ingredients').html(post.ingredients);
         element.find('.recipe-instructions').text(post.instructions);
         element.find('.recipe-readyInMinutes').text(`Ready in ${post.readyInMinutes} minutes`);
         element.find('.recipe-image').text(post.image);
@@ -78,7 +78,4 @@ const getDisplayVaultRecipes = () => {
 }
 
 getDisplayVaultRecipes();
-
-
-
 

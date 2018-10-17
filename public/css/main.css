@@ -64,11 +64,6 @@ nav {
 .logout {
   cursor: pointer;
 }
-/* #search-results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 1rem;
-} */
 
 .video-header {
   height: 100vh;
@@ -106,8 +101,6 @@ nav {
   text-align: center;
 }
 
-
-
 .accordion {
   cursor: pointer;
   padding: 8px;
@@ -133,10 +126,6 @@ nav {
   overflow: hidden;
   transition: max-height 0.6s ease-out;
 }
-
-/* .background {
-  background-color: rgb(255,165,0, 0.15);
-} */
 
 @media screen and (max-width: 615px) {
 
