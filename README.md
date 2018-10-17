@@ -1,7 +1,10 @@
 "Recipe Vault" | Thinkful Node Capstone
 
 Screenshots
-![Homepage](https://github.com/BlitzDampfwalze/recipe-vault/tree/master/read-me-images/Recipe-Vault-Home.JPG)
+![Homepage](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/Recipe-Vault-Home.JPG)
+![Sign-up](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/Recipe-Vault-Signup.JPG)
+![Add Recipe](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/Recipe-Vault-Add.JPG)
+![Your Recipe Vault](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/Recipe-Vault.JPG)
 
 Working prototype https://recipe-vault-node-capstone.herokuapp.com/
 
