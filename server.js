@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 require('./routes/recipeRoutes')(app);
 require('./routes/userRoutes')(app);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`listening on port: ${PORT}`));
 
 module.exports = { app };
