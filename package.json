@@ -18,6 +18,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "dotenv": "^8.0.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "lodash.isboolean": "^3.0.3",

@@ -1,4 +1,4 @@
-require('./config/config')
+require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
@@ -17,7 +17,8 @@ app.use(bodyParser.json());
 require('./routes/recipeRoutes')(app);
 require('./routes/userRoutes')(app);
 
-const PORT = process.env.PORT || 8080;
+// const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`listening on port: ${PORT}`));
 
 module.exports = { app };
