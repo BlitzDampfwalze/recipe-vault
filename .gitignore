@@ -1,5 +1,5 @@
 node_modules/
-config/config.js
+config
 api-calls.js
 .env
 tests/testing.js
